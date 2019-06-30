@@ -1,4 +1,4 @@
-const initSequelize = require('./initSequelize');
+const initSequelize = require('../lib/database/initSequelize');
 const transactionModel = require('./models/transaction');
 const payableModel = require('./models/payable');
 

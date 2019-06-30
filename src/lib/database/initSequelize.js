@@ -1,7 +1,7 @@
 const pg = require('pg');
 const Sequelize = require('sequelize');
 const moment = require('moment-timezone');
-const config = require('../config/database.js');
+const config = require('../../config/database.js');
 
 const initSequelize = callback => {
   const OID_BIGINT = 20;

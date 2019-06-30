@@ -1,6 +1,6 @@
 const pgtools = require('pgtools');
-const db = require('./index').sequelize;
-const config = require('../config/database');
+const db = require('../../database').sequelize;
+const config = require('../../config/database');
 
 const makeTestDatabase = async () => {
   try {
