@@ -1,7 +1,10 @@
 const initSequelize = require('./initSequelize');
+const transactionModel = require('./models/transaction');
 
 const makeTables = sequelize => {
-  return { sequelize };
+  const transaction = transactionModel(sequelize);
+
+  return { sequelize, transaction };
 };
 
 module.exports = initSequelize(makeTables);
