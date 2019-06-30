@@ -2,6 +2,8 @@ const boom = require('@hapi/boom');
 
 const defaultHandler = (req, res, next) => next(boom.notFound());
 
+const methodNotImplementedHandler = (req, res, next) => next(boom.notImplemented());
+
 // eslint-disable-next-line no-unused-vars
 const handleAPIError = (error, req, res, next) => {
   const parsedError = boom.isBoom(error) ? error : boom.badImplementation();
@@ -12,3 +14,4 @@ const handleAPIError = (error, req, res, next) => {
 
 exports.defaultHandler = defaultHandler;
 exports.handleAPIError = handleAPIError;
+exports.methodNotImplementedHandler = methodNotImplementedHandler;

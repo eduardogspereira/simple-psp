@@ -1,5 +1,9 @@
 const boom = require('@hapi/boom');
-const { defaultHandler, handleAPIError } = require('../../../src/lib/server');
+const {
+  defaultHandler,
+  handleAPIError,
+  methodNotImplementedHandler,
+} = require('../../../src/lib/server');
 
 describe('src/lib/server/index.js', () => {
   beforeEach(() => jest.resetAllMocks());
@@ -14,6 +18,15 @@ describe('src/lib/server/index.js', () => {
 
       expect(next).toHaveBeenCalledTimes(1);
       expect(next).toHaveBeenCalledWith(boom.notFound());
+    });
+  });
+
+  describe('methodNotImplementedHandler', () => {
+    it('should call next with notImplemented object', () => {
+      methodNotImplementedHandler(req, res, next);
+
+      expect(next).toHaveBeenCalledTimes(1);
+      expect(next).toHaveBeenCalledWith(boom.notImplemented());
     });
   });
 
