@@ -1,0 +1,28 @@
+{
+  "name": "simple-psp",
+  "version": "1.0.0",
+  "description": "Simple Payment Service Provider created for Pagar.me",
+  "main": "index.js",
+  "repository": "git@github.com:eduardogspereira/simple-psp.git",
+  "author": "Eduardo G. S. Pereira <eduardopereira@modclima.com.br>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jest": "^22.6.4",
+    "eslint-plugin-no-async-without-await": "^1.2.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^2.4.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && yarn test"
+    }
+  }
+}
