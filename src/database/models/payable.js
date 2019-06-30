@@ -8,7 +8,7 @@ const payable = sequelize =>
       id: { type: STRING, primaryKey: true, allowNull: false, defaultValue: cuid() },
       createdAt: { type: DATE, allowNull: false },
       updatedAt: { type: DATE, allowNull: false },
-      ammountAvailable: { type: INTEGER, allowNull: false },
+      amountAvailable: { type: INTEGER, allowNull: false },
       feePercent: { type: INTEGER, allowNull: false },
       status: { type: ENUM, allowNull: false, values: ['PAID', 'WAITING_FUNDS'] },
       paymentDate: { type: DATE, allowNull: false },
