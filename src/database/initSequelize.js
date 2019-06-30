@@ -12,7 +12,10 @@ const initSequelize = callback => {
   pg.types.setTypeParser(OID_DATE, val => moment.tz(val, 'YYYY-MM-DD', 'UTC'));
   pg.types.setTypeParser(OID_TIMESTAMP, val => moment.tz(val, 'YYYY-MM-DD HH:mm:ss.SSS', 'UTC'));
 
-  const sequelize = new Sequelize(config[process.env.NODE_ENV || 'development']);
+  const sequelize = new Sequelize({
+    ...config[process.env.NODE_ENV || 'development'],
+    define: { underscored: true },
+  });
 
   return callback(sequelize);
 };
