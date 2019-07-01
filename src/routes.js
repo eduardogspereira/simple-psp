@@ -1,6 +1,6 @@
 const express = require('express');
 const transactionsController = require('./controllers/transactions');
-const { methodNotImplementedHandler } = require('./lib/server/server');
+const { methodNotImplementedHandler } = require('./lib/server/handlers');
 
 const router = express.Router();
 

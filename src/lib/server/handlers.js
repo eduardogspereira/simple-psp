@@ -8,6 +8,11 @@ const methodNotImplementedHandler = (req, res, next) => next(boom.notImplemented
 const handleAPIError = (error, req, res, next) => {
   const { output: parsedError } = boom.isBoom(error) ? error : boom.badImplementation();
 
+  // if (process.env.NODE_ENV !== 'production') {
+  // parsedError.payload.message
+  // }
+  console.log(error);
+
   return res.status(parsedError.statusCode).json(parsedError.payload);
 };
 

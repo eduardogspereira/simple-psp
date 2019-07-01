@@ -3,9 +3,9 @@ const {
   defaultHandler,
   handleAPIError,
   methodNotImplementedHandler,
-} = require('../../../src/lib/server');
+} = require('../../../src/lib/server/handlers');
 
-describe('src/lib/server/index.js', () => {
+describe('src/lib/server/handlers.js', () => {
   beforeEach(() => jest.resetAllMocks());
 
   const req = null;

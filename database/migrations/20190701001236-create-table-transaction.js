@@ -16,10 +16,10 @@ module.exports = {
           field: 'payment_method',
           values: ['DEBIT_CARD', 'CREDIT_CARD'],
         },
-        cardNumber: { type: INTEGER, allowNull: false, field: 'card_number' },
+        cardNumber: { type: STRING(4), allowNull: false, field: 'card_number' },
         cardOwner: { type: TEXT, allowNull: false, field: 'card_owner' },
         expirationDate: { type: DATE, allowNull: false, field: 'expiration_date' },
-        verificationCode: { type: INTEGER, allowNull: false, field: 'verification_code' },
+        verificationCode: { type: STRING(3), allowNull: false, field: 'verification_code' },
       },
       { underscored: true },
     );

@@ -9,10 +9,10 @@ const transaction = sequelize =>
     amount: { type: INTEGER, allowNull: false },
     description: { type: TEXT, allowNull: true },
     paymentMethod: { type: ENUM, allowNull: false, values: ['DEBIT_CARD', 'CREDIT_CARD'] },
-    cardNumber: { type: INTEGER, allowNull: false },
+    cardNumber: { type: STRING(4), allowNull: false },
     cardOwner: { type: TEXT, allowNull: false },
     expirationDate: { type: DATE, allowNull: false },
-    verificationCode: { type: INTEGER, allowNull: false },
+    verificationCode: { type: STRING(3), allowNull: false },
   });
 
 module.exports = transaction;
