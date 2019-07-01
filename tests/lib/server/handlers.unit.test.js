@@ -1,6 +1,6 @@
 const boom = require('@hapi/boom');
 const {
-  defaultHandler,
+  notFoundHandler,
   handleAPIError,
   methodNotImplementedHandler,
 } = require('../../../src/lib/server/handlers');
@@ -12,9 +12,9 @@ describe('src/lib/server/handlers.js', () => {
   const res = { status: jest.fn(), json: jest.fn() };
   const next = jest.fn();
 
-  describe('defaultHandler', () => {
+  describe('notFoundHandler', () => {
     it('should call next with notFound object', () => {
-      defaultHandler(req, res, next);
+      notFoundHandler(req, res, next);
 
       expect(next).toHaveBeenCalledTimes(1);
       expect(next).toHaveBeenCalledWith(boom.notFound());
@@ -39,18 +39,32 @@ describe('src/lib/server/handlers.js', () => {
       expect(res.status).toHaveBeenCalledWith(500);
 
       expect(res.json).toHaveBeenCalledTimes(1);
-      expect(res.json).toHaveBeenCalledWith(boom.badImplementation().output.payload);
+      expect(res.json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          error: 'Internal Server Error',
+          message: 'An internal server error occurred',
+          stack: expect.any(String),
+          statusCode: 500,
+        }),
+      );
     });
-  });
 
-  it('should use the error received if error is a @hapi/boom istance', () => {
-    const error = boom.methodNotAllowed();
-    handleAPIError(error, req, res, next);
+    it('should use the error received if error is a @hapi/boom istance', () => {
+      const error = boom.methodNotAllowed();
+      handleAPIError(error, req, res, next);
 
-    expect(res.status).toHaveBeenCalledTimes(1);
-    expect(res.status).toHaveBeenCalledWith(405);
+      expect(res.status).toHaveBeenCalledTimes(1);
+      expect(res.status).toHaveBeenCalledWith(405);
 
-    expect(res.json).toHaveBeenCalledTimes(1);
-    expect(res.json).toHaveBeenCalledWith(error.output.payload);
+      expect(res.json).toHaveBeenCalledTimes(1);
+      expect(res.json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          error: 'Method Not Allowed',
+          message: 'Method Not Allowed',
+          stack: expect.any(String),
+          statusCode: 405,
+        }),
+      );
+    });
   });
 });

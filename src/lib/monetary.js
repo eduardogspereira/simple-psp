@@ -1,14 +1,14 @@
 const { divide, multiply } = require('ramda');
 
-const makeSafeCurrency = value => Math.trunc(value * 100);
+const makeSafeAmount = value => Math.trunc(value * 100);
 
-const makeSafeCardNumber = creditCardNumber => creditCardNumber.slice(-4);
+const makeSafeCardNumber = cardNumber => cardNumber.slice(-4);
 
-const calculateAmountByFeeTax = (amount, feePercent) => {
+const discountFeeTaxFromAmount = (amount, feePercent) => {
   const feeAmount = divide(multiply(amount, feePercent), 100);
   return Math.trunc(amount - feeAmount);
 };
 
-exports.makeSafeCurrency = makeSafeCurrency;
+exports.makeSafeAmount = makeSafeAmount;
 exports.makeSafeCardNumber = makeSafeCardNumber;
-exports.calculateAmountByFeeTax = calculateAmountByFeeTax;
+exports.discountFeeTaxFromAmount = discountFeeTaxFromAmount;

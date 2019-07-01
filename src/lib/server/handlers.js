@@ -12,7 +12,8 @@ const handleAPIError = (error, req, res, next) => {
     parsedError.payload.stack = error.stack;
   }
 
-  return res.status(parsedError.statusCode).json(parsedError.payload);
+  res.status(parsedError.statusCode);
+  return res.json(parsedError.payload);
 };
 
 exports.notFoundHandler = notFoundHandler;

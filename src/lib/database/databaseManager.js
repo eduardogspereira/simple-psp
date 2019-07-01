@@ -21,5 +21,10 @@ const dropDatabase = () => {
   }
 };
 
+const dropConnection = async () => {
+  await db.close();
+};
+
 exports.makeTestDatabase = makeTestDatabase;
 exports.dropDatabase = dropDatabase;
+exports.dropConnection = dropConnection;

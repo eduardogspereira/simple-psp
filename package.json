@@ -8,8 +8,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "test": "jest unit int --coverage --runInBand ",
-    "unit-test": "jest unit --watch",
+    "test": "NODE_ENV=test jest unit int --coverage --runInBand ",
+    "unit-test": "NODE_ENV=test jest unit --watch",
     "lint": "eslint src",
     "format": "pretty-quick",
     "pretest": "yarn run lint",

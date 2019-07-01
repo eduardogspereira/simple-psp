@@ -1,5 +1,5 @@
 const moment = require('moment-timezone');
-const { calculateAmountByFeeTax } = require('../../lib/monetary');
+const { discountFeeTaxFromAmount } = require('../../lib/monetary');
 
 const payableRules = {
   creditCard: { feePercent: 5, daysToReceive: 30, status: 'WAITING_FUNDS' },
@@ -15,7 +15,7 @@ const makePayableData = (safeTransaction, transactionId) => {
   const { status, feePercent, daysToReceive } = payableRule;
 
   const payableData = {
-    amountAvailable: calculateAmountByFeeTax(safeTransaction.amount, feePercent),
+    amountAvailable: discountFeeTaxFromAmount(safeTransaction.amount, feePercent),
     feePercent,
     status,
     paymentDate: moment()

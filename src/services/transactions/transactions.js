@@ -1,9 +1,9 @@
 const { saveTransaction, savePayable } = require('../../repository/repository');
 const makePayableData = require('./makePayableData');
-const { makeSafeCurrency, makeSafeCardNumber } = require('../../lib/monetary');
+const { makeSafeAmount, makeSafeCardNumber } = require('../../lib/monetary');
 
 const makeTransaction = async validatedTransaction => {
-  const safeAmount = makeSafeCurrency(validatedTransaction.amount);
+  const safeAmount = makeSafeAmount(validatedTransaction.amount);
   const safeCardNumber = makeSafeCardNumber(validatedTransaction.cardNumber);
 
   const safeTransaction = {
