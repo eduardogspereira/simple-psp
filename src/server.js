@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const routes = require('./routes');
+const makeLogger = require('./lib/server/makeLogger');
 const { notFoundHandler, handleAPIError } = require('./lib/server/handlers');
 
 module.exports = ({ port, host }) => {
@@ -13,6 +14,7 @@ module.exports = ({ port, host }) => {
   server.use(helmet());
   server.use(compression());
   server.use(bodyParser.json());
+  server.use(makeLogger());
 
   server.use(routes);
 
