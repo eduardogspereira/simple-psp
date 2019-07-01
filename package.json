@@ -6,6 +6,16 @@
   "repository": "git@github.com:eduardogspereira/simple-psp.git",
   "author": "Eduardo G. S. Pereira <edu_vcd@hotmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest unit int --coverage --runInBand ",
+    "unit-test": "jest unit --watch",
+    "lint": "eslint src",
+    "format": "pretty-quick",
+    "pretest": "yarn run lint",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo",
+    "migration:create": "sequelize migration:create"
+  },
   "dependencies": {
     "@hapi/boom": "^7.4.2",
     "@hapi/joi-date": "^1.3.0",
