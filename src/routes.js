@@ -5,6 +5,7 @@ const { methodNotImplementedHandler } = require('./lib/server/handlers');
 const router = express.Router();
 
 // transactions routes
+router.get('/transactions', transactionsController.getTransactions);
 router.post('/transactions', transactionsController.postTransaction);
 router.all('/transactions', methodNotImplementedHandler);
 

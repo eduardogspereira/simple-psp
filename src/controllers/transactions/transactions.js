@@ -21,4 +21,14 @@ const postTransaction = async (req, res, next) => {
   return response.created(res);
 };
 
+const getTransactions = async (req, res, next) => {
+  try {
+    const transactions = await transactionService.listTransactions();
+    return response.success(res, transactions);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 exports.postTransaction = postTransaction;
+exports.getTransactions = getTransactions;

@@ -8,6 +8,8 @@ const {
 } = require('../../../src/lib/database/databaseManager');
 
 describe('./src/controller/transactions', () => {
+  beforeEach(() => jest.resetAllMocks());
+
   beforeAll(async () => {
     await makeTestDatabase();
   });
@@ -17,14 +19,14 @@ describe('./src/controller/transactions', () => {
     await dropConnection();
   });
 
-  describe('postTransaction', () => {
-    const res = { status: jest.fn(), json: jest.fn() };
-    const next = null;
+  const res = { status: jest.fn(), json: jest.fn() };
+  const next = null;
+  const fakeCardNumber = '4379845682831410';
 
+  describe('postTransaction', () => {
     const now = moment();
 
-    const fakeCardNumber = '4379845682831410';
-    const transactionBody = {
+    const transactionBodyA = {
       amount: 1.99,
       description: 'Space Jam',
       paymentMethod: 'CREDIT_CARD',
@@ -35,7 +37,7 @@ describe('./src/controller/transactions', () => {
     };
 
     it('should persist the transaction at the database and return created HTTP status code', async () => {
-      const req = { body: transactionBody };
+      const req = { body: transactionBodyA };
       await transactionsController.postTransaction(req, res, next);
 
       const transactionData = await transaction.findOne({ raw: true });
@@ -71,6 +73,27 @@ describe('./src/controller/transactions', () => {
       );
 
       expect(res.status).toHaveBeenCalledWith(201);
+    });
+  });
+
+  describe('getTransactions', () => {
+    it('should list all transactions saved at database', async () => {
+      const req = null;
+      await transactionsController.getTransactions(req, res, next);
+
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith([
+        {
+          amount: 199,
+          cardNumber: '1410',
+          cardOwner: 'Michael Jordan',
+          description: 'Space Jam',
+          expirationDate: expect.any(Date),
+          paymentMethod: 'CREDIT_CARD',
+          transactionId: expect.any(String),
+          verificationCode: '321',
+        },
+      ]);
     });
   });
 });
