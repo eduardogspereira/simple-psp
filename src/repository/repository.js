@@ -19,6 +19,11 @@ const listTransactions = () =>
 
 const savePayable = payableData => payable.create(payableData);
 
+const listPayables = () => {
+  return payable.findAll({ raw: true, attributes: ['amountAvailable', 'status'] });
+};
+
 exports.listTransactions = listTransactions;
 exports.saveTransaction = saveTransaction;
 exports.savePayable = savePayable;
+exports.listPayables = listPayables;

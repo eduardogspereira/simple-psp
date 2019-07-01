@@ -1,5 +1,5 @@
 const repository = require('../../repository/repository');
-const makePayableData = require('./makePayableData');
+const { makePayable } = require('./actions');
 const { makeSafeAmount, makeSafeCardNumber } = require('../../lib/monetary');
 
 const makeTransaction = async validatedTransaction => {
@@ -13,8 +13,8 @@ const makeTransaction = async validatedTransaction => {
   };
   const { id: transactionId } = await repository.saveTransaction(safeTransaction);
 
-  const payableData = makePayableData(safeTransaction, transactionId);
-  return repository.savePayable(payableData);
+  const payable = makePayable(safeTransaction, transactionId);
+  return repository.savePayable(payable);
 };
 
 const listTransactions = () => repository.listTransactions();

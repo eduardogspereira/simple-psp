@@ -1,14 +1,14 @@
 const moment = require('moment-timezone');
-const makePayableData = require('../../../src/services/transactions/makePayableData');
+const { makePayable } = require('../../../src/services/transactions/actions');
 
-describe('makePayableData', () => {
+describe('makePayable', () => {
   const now = moment();
 
   it('should make the correct payable data for credit card', () => {
     const safeTransaction = { paymentMethod: 'CREDIT_CARD', amount: 10000 };
     const transactionId = 'pernalongaID';
 
-    const payableData = makePayableData(safeTransaction, transactionId);
+    const payableData = makePayable(safeTransaction, transactionId);
 
     expect(payableData).toEqual({
       amountAvailable: 9500,
@@ -31,7 +31,7 @@ describe('makePayableData', () => {
     const safeTransaction = { paymentMethod: 'DEBIT_CARD', amount: 10000 };
     const transactionId = 'patolinoID';
 
-    const payableData = makePayableData(safeTransaction, transactionId);
+    const payableData = makePayable(safeTransaction, transactionId);
 
     expect(payableData).toEqual({
       amountAvailable: 9700,

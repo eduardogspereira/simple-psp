@@ -6,7 +6,7 @@ const payableRules = {
   debitCard: { feePercent: 3, daysToReceive: 0, status: 'PAID' },
 };
 
-const makePayableData = (safeTransaction, transactionId) => {
+const makePayable = (safeTransaction, transactionId) => {
   const payableRule =
     safeTransaction.paymentMethod === 'CREDIT_CARD'
       ? payableRules.creditCard
@@ -27,4 +27,4 @@ const makePayableData = (safeTransaction, transactionId) => {
   return payableData;
 };
 
-module.exports = makePayableData;
+exports.makePayable = makePayable;
