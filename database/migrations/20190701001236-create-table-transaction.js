@@ -1,19 +1,28 @@
-const { STRING, INTEGER, ENUM, TEXT, DATE } = require('sequelize');
+const { STRING, INTEGER, ENUM, TEXT, DATE, fn } = require('sequelize');
 
 module.exports = {
   up: queryInterface => {
-    return queryInterface.createTable('transaction', {
-      id: { type: STRING, primaryKey: true, allowNull: false },
-      createdAt: { type: DATE, allowNull: false },
-      updatedAt: { type: DATE, allowNull: false },
-      amount: { type: INTEGER, allowNull: false },
-      description: { type: TEXT, allowNull: true },
-      paymentMethod: { type: ENUM, allowNull: false, values: ['DEBIT_CARD', 'CREDIT_CARD'] },
-      cardNumber: { type: INTEGER, allowNull: false },
-      cardOwner: { type: TEXT, allowNull: false },
-      expirationDate: { type: DATE, allowNull: false },
-      verificationCode: { type: INTEGER, allowNull: false },
-    });
+    return queryInterface.createTable(
+      'transaction',
+      {
+        id: { type: STRING, primaryKey: true, allowNull: false },
+        createdAt: { type: DATE, allowNull: false, defaultValue: fn('NOW'), field: 'created_at' },
+        updatedAt: { type: DATE, allowNull: false, defaultValue: fn('NOW'), field: 'updated_at' },
+        amount: { type: INTEGER, allowNull: false },
+        description: { type: TEXT, allowNull: true },
+        paymentMethod: {
+          type: ENUM,
+          allowNull: false,
+          field: 'payment_method',
+          values: ['DEBIT_CARD', 'CREDIT_CARD'],
+        },
+        cardNumber: { type: INTEGER, allowNull: false, field: 'card_number' },
+        cardOwner: { type: TEXT, allowNull: false, field: 'card_owner' },
+        expirationDate: { type: DATE, allowNull: false, field: 'expiration_date' },
+        verificationCode: { type: INTEGER, allowNull: false, field: 'verification_code' },
+      },
+      { underscored: true },
+    );
   },
 
   down: queryInterface => queryInterface.dropTable('transaction'),

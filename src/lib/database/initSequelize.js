@@ -1,7 +1,7 @@
 const pg = require('pg');
 const Sequelize = require('sequelize');
 const moment = require('moment-timezone');
-const config = require('../../config/database.js');
+const config = require('../../../database/config/database.js');
 
 const initSequelize = callback => {
   const OID_BIGINT = 20;
@@ -14,7 +14,7 @@ const initSequelize = callback => {
 
   const sequelize = new Sequelize({
     ...config[process.env.NODE_ENV || 'development'],
-    define: { underscored: true },
+    define: { underscored: true, freezeTableName: true },
   });
 
   return callback(sequelize);
