@@ -1,9 +1,8 @@
-const cuid = require('cuid');
-const { DATE, ENUM, INTEGER, STRING, TEXT, fn } = require('sequelize');
+const { DATE, ENUM, INTEGER, STRING, TEXT, UUID, UUIDV4, fn } = require('sequelize');
 
 const transaction = sequelize =>
   sequelize.define('transaction', {
-    id: { type: STRING, primaryKey: true, allowNull: false, defaultValue: cuid() },
+    id: { type: UUID, primaryKey: true, allowNull: false, defaultValue: UUIDV4 },
     createdAt: { type: DATE, allowNull: false, defaultValue: fn('NOW') },
     updatedAt: { type: DATE, allowNull: false, defaultValue: fn('NOW') },
     amount: { type: INTEGER, allowNull: false },

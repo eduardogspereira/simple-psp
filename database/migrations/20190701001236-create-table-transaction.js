@@ -1,11 +1,11 @@
-const { STRING, INTEGER, ENUM, TEXT, DATE, fn } = require('sequelize');
+const { INTEGER, ENUM, TEXT, DATE, STRING, UUID, UUIDV4, fn } = require('sequelize');
 
 module.exports = {
   up: queryInterface => {
     return queryInterface.createTable(
       'transaction',
       {
-        id: { type: STRING, primaryKey: true, allowNull: false },
+        id: { type: UUID, primaryKey: true, allowNull: false, defaultValue: UUIDV4 },
         createdAt: { type: DATE, allowNull: false, defaultValue: fn('NOW'), field: 'created_at' },
         updatedAt: { type: DATE, allowNull: false, defaultValue: fn('NOW'), field: 'updated_at' },
         amount: { type: INTEGER, allowNull: false },
