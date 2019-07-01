@@ -1,5 +1,5 @@
 const cuid = require('cuid');
-const { DATE, ENUM, INTEGER, STRING, fn } = require('sequelize');
+const { DATE, DOUBLE, ENUM, INTEGER, STRING, fn } = require('sequelize');
 
 const payable = sequelize =>
   sequelize.define(
@@ -9,7 +9,7 @@ const payable = sequelize =>
       createdAt: { type: DATE, allowNull: false, defaultValue: fn('NOW') },
       updatedAt: { type: DATE, allowNull: false, defaultValue: fn('NOW') },
       amountAvailable: { type: INTEGER, allowNull: false },
-      feePercent: { type: INTEGER, allowNull: false },
+      feePercent: { type: DOUBLE, allowNull: false },
       status: { type: ENUM, allowNull: false, values: ['PAID', 'WAITING_FUNDS'] },
       paymentDate: { type: DATE, allowNull: false },
       transactionId: { type: STRING, allowNull: false },

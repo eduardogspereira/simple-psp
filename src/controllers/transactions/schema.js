@@ -2,7 +2,9 @@ const JoiDate = require('@hapi/joi-date');
 const Joi = require('joi').extend(JoiDate);
 
 const transactionSchema = Joi.object().keys({
-  amount: Joi.number().required(),
+  amount: Joi.number()
+    .positive()
+    .required(),
   description: Joi.string()
     .allow(null)
     .allow(''),

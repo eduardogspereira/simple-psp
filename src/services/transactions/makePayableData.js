@@ -1,5 +1,5 @@
 const moment = require('moment-timezone');
-const { calculateAmountByFeeTax } = require('../lib/monetary');
+const { calculateAmountByFeeTax } = require('../../lib/monetary');
 
 const payableRules = {
   creditCard: { feePercent: 5, daysToReceive: 30, status: 'WAITING_FUNDS' },

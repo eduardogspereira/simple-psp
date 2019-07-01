@@ -1,4 +1,4 @@
-const { STRING, INTEGER, ENUM, DATE, fn } = require('sequelize');
+const { STRING, DOUBLE, INTEGER, ENUM, DATE, fn } = require('sequelize');
 
 module.exports = {
   up: queryInterface => {
@@ -9,7 +9,7 @@ module.exports = {
         createdAt: { type: DATE, allowNull: false, defaultValue: fn('NOW'), field: 'created_at' },
         updatedAt: { type: DATE, allowNull: false, defaultValue: fn('NOW'), field: 'updated_at' },
         amountAvailable: { type: INTEGER, allowNull: false, field: 'amount_available' },
-        feePercent: { type: INTEGER, allowNull: false, field: 'fee_percent' },
+        feePercent: { type: DOUBLE, allowNull: false, field: 'fee_percent' },
         status: { type: ENUM, allowNull: false, values: ['PAID', 'WAITING_FUNDS'] },
         paymentDate: { type: DATE, allowNull: false, field: 'payment_date' },
         transactionId: { type: STRING, allowNull: false, field: 'transaction_id' },
