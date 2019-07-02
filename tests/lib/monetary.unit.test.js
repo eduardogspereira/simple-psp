@@ -25,4 +25,12 @@ describe('./src/lib/monetary', () => {
       expect(amountAvaiable).toEqual(9029);
     });
   });
+
+  describe('makeFloatMoney', () => {
+    it('should divide the amount by 100 and return the money to float value', () => {
+      const amount = 3333333333;
+      const money = monetary.makeFloatMoney(amount);
+      expect(money).toEqual(33333333.33);
+    });
+  });
 });
