@@ -7,7 +7,7 @@ jest.mock('@hapi/boom');
 jest.mock('../../../src/lib/server/response');
 jest.mock('../../../src/services/transactions');
 
-describe('./src/controllers/transactions/transactions', () => {
+describe('./src/controllers/transactions', () => {
   beforeEach(() => jest.resetAllMocks());
 
   const res = null;
