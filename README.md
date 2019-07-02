@@ -10,6 +10,7 @@ Simple Payment Service Provider (PSP) created for Pagar.me
 - [Setup](#setup)
 - [Run](#run)
 - [API](#api)
+- [Development](#development)
 
 ## Dependencies
 
@@ -64,11 +65,11 @@ The application will start by default at the port 3000 on localhost.
 - [GET /transactions](#get-/transactions)
 - [GET /payables](#get-/payables)
 
-## POST /transactions
+### POST /transactions
 
 Create a new transaction.
 
-#### Body params
+#### Request body params
 
 | Name                 | Type   | Required | Description                                                      |
 | -------------------- | ------ | -------- | ---------------------------------------------------------------- |
@@ -79,7 +80,7 @@ Create a new transaction.
 | **expirationDate**   | string | true     | The card expiration date. Format: _MM/YY_                        |
 | **verificationCode** | string | true     | The card verification value                                      |
 
-##### Example
+##### Request body example
 
 > POST /boletos
 
@@ -94,7 +95,114 @@ Create a new transaction.
 }
 ```
 
-## GET /transactions
+#### Request example
+
+```bash
+curl --request POST \
+--url 'http://localhost:3000/transactions' \
+--header 'content-type: application/json' \
+--data '{"amount": 300.75,"paymentMethod": "DEBIT_CARD",
+         "cardNumber": "4984238052310065","cardOwner": "Eduardo G S Pereira",
+         "expirationDate": "03/21","verificationCode": "102"}' \
+--include
+```
+
+#### Response example
+
+```bash
+HTTP/1.1 201 Created
+Access-Control-Allow-Origin: *
+X-DNS-Prefetch-Control: off
+X-Frame-Options: SAMEORIGIN
+Strict-Transport-Security: max-age=15552000; includeSubDomains
+X-Download-Options: noopen
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Content-Type: application/json; charset=utf-8
+Content-Length: 2
+ETag: W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"
+Vary: Accept-Encoding
+Date: Tue, 02 Jul 2019 09:13:37 GMT
+Connection: keep-alive
+
+{}
+```
+
+### GET /transactions
+
+List available transactions.
+
+#### Response body params
+
+| Name                   | Type   | Description                               |
+| ---------------------- | ------ | ----------------------------------------- |
+| **transactionId**      | string | The ID for the transaction                |
+| **amount**             | number | The transaction amount value              |
+| **description**        | string | The description of the transaction        |
+| **paymentMethod**      | string | The payment method                        |
+| **cardLastFourDigits** | string | The last four digits from the card number |
+| **expirationDate**     | string | The card expiration date                  |
+| **verificationCode**   | string | The card verification value               |
+
+##### Response body example
+
+> GET /transactions
+
+```
+[
+    {
+        "transactionId": "b65a5674-f9c2-4caf-86fa-0aaaa6398726",
+        "amount": 300.13,
+        "description": null,
+        "paymentMethod": "DEBIT_CARD",
+        "cardLastFourDigits": "0065",
+        "cardOwner": "Eduardo G S Pereira",
+        "expirationDate": "03/2021",
+        "verificationCode": "102"
+    },
+    ...
+    {
+        "transactionId": "5c479b89-ae9c-434c-851c-22b48de1c374",
+        "amount": 1050.79,
+        "description": "Smartband XYZ 3.0",
+        "paymentMethod": "CREDIT_CARD",
+        "cardLastFourDigits": "1578",
+        "cardOwner": "Indiana Jones",
+        "expirationDate": "03/2021",
+        "verificationCode": "102"
+    }
+]
+```
+
+#### Request example
+
+```bash
+curl --url 'http://localhost:3000/transactions' --include
+```
+
+#### Response example
+
+```bash
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+X-DNS-Prefetch-Control: off
+X-Frame-Options: SAMEORIGIN
+Strict-Transport-Security: max-age=15552000; includeSubDomains
+X-Download-Options: noopen
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Content-Type: application/json; charset=utf-8
+Content-Length: 2097
+ETag: W/"831-JIMUzB9LV54mD8GqTscE32TTzIo"
+Vary: Accept-Encoding
+Date: Tue, 02 Jul 2019 09:38:04 GMT
+Connection: keep-alive
+
+[{"transactionId":"b65a5674-f9c2-4caf-86fa-0aaaa6398726",
+  "amount":300,"description":null,"paymentMethod":"DEBIT_CARD",
+  "cardLastFourDigits":"0065","cardOwner":"Eduardo G S Pereira",
+  "expirationDate":"03/2021","verificationCode":"102"}]
+```
 
 ## GET /payables
 

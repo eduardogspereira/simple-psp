@@ -84,11 +84,11 @@ describe('./src/controller/transactions', () => {
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith([
         {
-          amount: 199,
-          cardNumber: '1410',
+          amount: 1.99,
+          cardLastFourDigits: '1410',
           cardOwner: 'Michael Jordan',
           description: 'Space Jam',
-          expirationDate: expect.any(Date),
+          expirationDate: expect.any(String),
           paymentMethod: 'CREDIT_CARD',
           transactionId: expect.any(String),
           verificationCode: '321',

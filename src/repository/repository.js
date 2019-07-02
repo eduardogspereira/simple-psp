@@ -10,7 +10,7 @@ const listTransactions = () =>
       'amount',
       'description',
       'paymentMethod',
-      'cardNumber',
+      ['card_number', 'cardLastFourDigits'],
       'cardOwner',
       'expirationDate',
       'verificationCode',

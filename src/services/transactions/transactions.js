@@ -1,6 +1,7 @@
+const moment = require('moment-timezone');
 const repository = require('../../repository/repository');
 const { makePayable } = require('./actions');
-const { makeSafeAmount, makeSafeCardNumber } = require('../../lib/monetary');
+const { makeSafeAmount, makeFloatMoney, makeSafeCardNumber } = require('../../lib/monetary');
 
 const makeTransaction = async validatedTransaction => {
   const safeAmount = makeSafeAmount(validatedTransaction.amount);
@@ -17,7 +18,15 @@ const makeTransaction = async validatedTransaction => {
   return repository.savePayable(payable);
 };
 
-const listTransactions = () => repository.listTransactions();
+const listTransactions = async () => {
+  const transactions = await repository.listTransactions();
+
+  return transactions.map(transaction => ({
+    ...transaction,
+    amount: makeFloatMoney(transaction.amount),
+    expirationDate: moment(transaction.expirationDate).format('MM/YYYY'),
+  }));
+};
 
 exports.makeTransaction = makeTransaction;
 exports.listTransactions = listTransactions;
