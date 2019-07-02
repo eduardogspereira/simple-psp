@@ -148,29 +148,28 @@ List available transactions.
 
 > GET /transactions
 
-```
+```json
 [
-    {
-        "transactionId": "b65a5674-f9c2-4caf-86fa-0aaaa6398726",
-        "amount": 300.13,
-        "description": null,
-        "paymentMethod": "DEBIT_CARD",
-        "cardLastFourDigits": "0065",
-        "cardOwner": "Eduardo G S Pereira",
-        "expirationDate": "03/2021",
-        "verificationCode": "102"
-    },
-    ...
-    {
-        "transactionId": "5c479b89-ae9c-434c-851c-22b48de1c374",
-        "amount": 1050.79,
-        "description": "Smartband XYZ 3.0",
-        "paymentMethod": "CREDIT_CARD",
-        "cardLastFourDigits": "1578",
-        "cardOwner": "Indiana Jones",
-        "expirationDate": "03/2021",
-        "verificationCode": "102"
-    }
+  {
+    "transactionId": "b65a5674-f9c2-4caf-86fa-0aaaa6398726",
+    "amount": 300.13,
+    "description": null,
+    "paymentMethod": "DEBIT_CARD",
+    "cardLastFourDigits": "0065",
+    "cardOwner": "Eduardo G S Pereira",
+    "expirationDate": "03/2021",
+    "verificationCode": "102"
+  },
+  ...{
+    "transactionId": "5c479b89-ae9c-434c-851c-22b48de1c374",
+    "amount": 1050.79,
+    "description": "Smartband XYZ 3.0",
+    "paymentMethod": "CREDIT_CARD",
+    "cardLastFourDigits": "1578",
+    "cardOwner": "Indiana Jones",
+    "expirationDate": "03/2021",
+    "verificationCode": "102"
+  }
 ]
 ```
 
@@ -204,7 +203,54 @@ Connection: keep-alive
   "expirationDate":"03/2021","verificationCode":"102"}]
 ```
 
-## GET /payables
+### GET /payables
+
+List the available payable.
+
+#### Response body params
+
+| Name             | Type   | Description                             |
+| ---------------- | ------ | --------------------------------------- |
+| **available**    | number | The total amount available for the user |
+| **waitingFunds** | number | The amount that are waiting funds       |
+
+##### Request body example
+
+> GET /payables
+
+```json
+{
+  "available": 2417.1,
+  "waitingFunds": 28.62
+}
+```
+
+#### Request example
+
+```bash
+curl --url 'http://localhost:3000/payables' --include
+```
+
+#### Response example
+
+```bash
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+X-DNS-Prefetch-Control: off
+X-Frame-Options: SAMEORIGIN
+Strict-Transport-Security: max-age=15552000; includeSubDomains
+X-Download-Options: noopen
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Content-Type: application/json; charset=utf-8
+Content-Length: 41
+ETag: W/"29-zMxJefaVfxTPUE50GOPHJdaSjMI"
+Vary: Accept-Encoding
+Date: Tue, 02 Jul 2019 09:59:15 GMT
+Connection: keep-alive
+
+{"available":2417.1,"waitingFunds":28.62}
+```
 
 ## Development
 

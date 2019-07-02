@@ -15,8 +15,8 @@ describe('./src/services/payables/actions', () => {
       ];
 
       const expectedPayableResponse = {
-        paid: 61070,
-        waitingFunds: 47000,
+        PAID: 61070,
+        WAITING_FUNDS: 47000,
       };
 
       const payableResponse = makeAggregatedPayablesByStatus(payables);

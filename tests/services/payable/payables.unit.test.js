@@ -15,7 +15,7 @@ describe('./src/services/payable', () => {
       listPayables.mockResolvedValue(mockedData);
 
       const payableResponse = await payablesService.loadPayables();
-      expect(payableResponse).toEqual({ waitingFunds: 35.23, paid: 150 });
+      expect(payableResponse).toEqual({ waitingFunds: 35.23, available: 150 });
     });
   });
 });

@@ -1,6 +1,10 @@
 const R = require('ramda');
 const { listPayables } = require('../../repository/repository');
-const { makeAggregatedPayablesByStatus, parsePayableCurrencyValues } = require('./actions');
+const {
+  makeAggregatedPayablesByStatus,
+  parsePayableCurrencyValues,
+  parsePayableKeyNames,
+} = require('./actions');
 
 const loadPayables = async () => {
   const payables = await listPayables();
@@ -8,6 +12,7 @@ const loadPayables = async () => {
   const makePayableResponse = R.pipe(
     makeAggregatedPayablesByStatus,
     parsePayableCurrencyValues,
+    parsePayableKeyNames,
   );
 
   return makePayableResponse(payables);
