@@ -60,7 +60,7 @@ Then execute:
 yarn start [OPTIONS]
 ```
 
-The application will start by default at the port 3000 on localhost.
+The application will start by default at http://localhost:3000.
 
 ## API
 
@@ -257,6 +257,11 @@ Connection: keep-alive
 
 ## Development
 
+- [Run tests](#run-tests)
+- [Create and undo migrations](#create-and-undo-migrations)
+
+### Run tests
+
 Full tests and test coverage
 
 Please, set environment variables to a test database.
@@ -269,6 +274,20 @@ Unit tests and watch for changes
 
 ```bash
 yarn run unit-test
+```
+
+### Create and undo migrations
+
+To create a new migration you can execute:
+
+```bash
+yarn run migration:create --name MIGRATION_NAME
+```
+
+To undo a migration you can execute
+
+```bash
+yarn run db:migrate:undo
 ```
 
 ## License
