@@ -45,7 +45,7 @@ PGHOST=localhost \
 PGUSER=user_ab... \
 PGPASSWORD=12a... \
 PGPORT=6432 \
-yarn db:migrate
+yarn run db:migrate
 ```
 
 ## Run
