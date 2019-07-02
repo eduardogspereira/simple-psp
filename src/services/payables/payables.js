@@ -1,5 +1,5 @@
 const R = require('ramda');
-const { listPayables } = require('../../repository/repository');
+const { listPayables } = require('../../repository');
 const {
   makeAggregatedPayablesByStatus,
   parsePayableCurrencyValues,

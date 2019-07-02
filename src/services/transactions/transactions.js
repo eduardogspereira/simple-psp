@@ -1,5 +1,5 @@
 const moment = require('moment-timezone');
-const repository = require('../../repository/repository');
+const repository = require('../../repository');
 const { makePayable } = require('./actions');
 const { makeSafeAmount, makeFloatMoney, makeSafeCardNumber } = require('../../lib/monetary');
 

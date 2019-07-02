@@ -10,6 +10,9 @@ Simple Payment Service Provider (PSP) created for Pagar.me
 - [Setup](#setup)
 - [Run](#run)
 - [API](#api)
+  - [POST /transactions](#post-/transactions)
+  - [GET /transactions](#get-/transactions)
+  - [GET /payables](#get-/payables)
 - [Development](#development)
 
 ## Dependencies
@@ -160,7 +163,7 @@ List available transactions.
     "expirationDate": "03/2021",
     "verificationCode": "102"
   },
-  ...{
+  {
     "transactionId": "5c479b89-ae9c-434c-851c-22b48de1c374",
     "amount": 1050.79,
     "description": "Smartband XYZ 3.0",
