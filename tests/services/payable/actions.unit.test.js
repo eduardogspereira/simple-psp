@@ -1,6 +1,7 @@
 const {
   makeAggregatedPayablesByStatus,
   parsePayableCurrencyValues,
+  parsePayableKeyNames,
 } = require('../../../src/services/payables/actions');
 
 describe('./src/services/payables/actions', () => {
@@ -32,6 +33,14 @@ describe('./src/services/payables/actions', () => {
 
       const parsedPayable = parsePayableCurrencyValues(aggregatedPayable);
       expect(parsedPayable).toEqual(expectedParsedPayble);
+    });
+  });
+
+  describe('parsePayableKeyNames', () => {
+    it('should replace the aggregatedPayable key names with the expected response keys', () => {
+      const aggregatedPayable = { PAID: 10.65, WAITING_FUNDS: 95.86 };
+      const parsedPayable = parsePayableKeyNames(aggregatedPayable);
+      expect(parsedPayable).toEqual({ available: 10.65, waitingFunds: 95.86 });
     });
   });
 });
