@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const routes = require('./routes');
 const makeLogger = require('./lib/server/makeLogger');
-const { notFoundHandler, handleAPIError } = require('./lib/server/handlers');
+const { notFoundHandler, apiErrorHandler } = require('./lib/server/handlers');
 
 module.exports = ({ port, host }) => {
   const server = express();
@@ -19,7 +19,7 @@ module.exports = ({ port, host }) => {
   server.use(routes);
 
   server.use('*', notFoundHandler);
-  server.use(handleAPIError);
+  server.use(apiErrorHandler);
 
   server.listen(port, host);
 };

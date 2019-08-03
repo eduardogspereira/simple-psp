@@ -1,7 +1,7 @@
 const boom = require('@hapi/boom');
 const {
   notFoundHandler,
-  handleAPIError,
+  apiErrorHandler,
   methodNotImplementedHandler,
 } = require('../../../src/lib/server/handlers');
 
@@ -30,10 +30,10 @@ describe('src/lib/server/handlers.js', () => {
     });
   });
 
-  describe('handleAPIError', () => {
+  describe('apiErrorHandler', () => {
     it('should use badImplementation error if error is not a @hapi/boom instance', () => {
       const error = new Error('random-error');
-      handleAPIError(error, req, res, next);
+      apiErrorHandler(error, req, res, next);
 
       expect(res.status).toHaveBeenCalledTimes(1);
       expect(res.status).toHaveBeenCalledWith(500);
@@ -51,7 +51,7 @@ describe('src/lib/server/handlers.js', () => {
 
     it('should use the error received if error is a @hapi/boom istance', () => {
       const error = boom.methodNotAllowed();
-      handleAPIError(error, req, res, next);
+      apiErrorHandler(error, req, res, next);
 
       expect(res.status).toHaveBeenCalledTimes(1);
       expect(res.status).toHaveBeenCalledWith(405);

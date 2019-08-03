@@ -5,7 +5,7 @@ const notFoundHandler = (req, res, next) => next(boom.notFound());
 const methodNotImplementedHandler = (req, res, next) => next(boom.notImplemented());
 
 // eslint-disable-next-line no-unused-vars
-const handleAPIError = (error, req, res, next) => {
+const apiErrorHandler = (error, req, res, next) => {
   const { output: parsedError } = boom.isBoom(error) ? error : boom.badImplementation();
 
   if (process.env.NODE_ENV !== 'production') {
@@ -17,5 +17,5 @@ const handleAPIError = (error, req, res, next) => {
 };
 
 exports.notFoundHandler = notFoundHandler;
-exports.handleAPIError = handleAPIError;
+exports.apiErrorHandler = apiErrorHandler;
 exports.methodNotImplementedHandler = methodNotImplementedHandler;
