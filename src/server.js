@@ -7,14 +7,18 @@ const routes = require('./routes');
 const makeLogger = require('./lib/server/makeLogger');
 const { notFoundHandler, apiErrorHandler } = require('./lib/server/handlers');
 
-module.exports = ({ port, host }) => {
-  const server = express();
-
+const useMiddlewares = server => {
   server.use(cors());
   server.use(helmet());
   server.use(compression());
   server.use(bodyParser.json());
   server.use(makeLogger());
+};
+
+module.exports = ({ port, host }) => {
+  const server = express();
+
+  useMiddlewares(server);
 
   server.use(routes);
 
