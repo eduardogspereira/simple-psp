@@ -54,5 +54,11 @@
     "hooks": {
       "pre-commit": "yarn format && yarn test"
     }
+  },
+  "renovate": {
+    "assignees": ["eduardogspereira"],
+    "automerge": true,
+    "automergeType": "pr-comment",
+    "automergeComment": "merge!"
   }
 }
