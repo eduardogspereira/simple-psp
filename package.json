@@ -34,7 +34,7 @@
     "pgtools": "^0.3.0",
     "ramda": "^0.26.1",
     "sequelize": "^5.15.1",
-    "yargs": "^13.3.0"
+    "yargs": "^15.0.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.16",
