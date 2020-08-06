@@ -290,14 +290,4 @@ To undo a migration you can execute
 yarn run db:migrate:undo
 ```
 
-## License
-
-```
-The MIT License (MIT)
-Copyright (c) 2017 Pagar.me Pagamentos S/A
-```
-
-TEST SIGNED COMMIT
-
-
-ABC
+testing rebase action
