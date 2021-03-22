@@ -33,7 +33,7 @@
     "pg": "^8.3.0",
     "pgtools": "^0.3.0",
     "ramda": "^0.27.0",
-    "sequelize": "^6.0.0",
+    "sequelize": "^6.6.1",
     "yargs": "^15.0.0"
   },
   "devDependencies": {
